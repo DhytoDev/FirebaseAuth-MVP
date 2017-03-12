@@ -1,17 +1,17 @@
-package com.hepikode.mvpdemo1.view.activity;
+package com.hepikode.mvpdemo1.views.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.hepikode.mvpdemo1.R;
-import com.hepikode.mvpdemo1.presenter.SignUpPresenterImp;
-import com.hepikode.mvpdemo1.view.SignUpView;
+import com.hepikode.mvpdemo1.presenters.SignUpPresenterImp;
+import com.hepikode.mvpdemo1.utils.IntentUtils;
+import com.hepikode.mvpdemo1.views.SignUpView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     @Override
     public void signUpSuccess() {
         Toast.makeText(this, "SignUp Sukses !", Toast.LENGTH_SHORT).show();
+        IntentUtils.setIntent(SignUpActivity.this, LoginActivity.class);
     }
 
     @Override

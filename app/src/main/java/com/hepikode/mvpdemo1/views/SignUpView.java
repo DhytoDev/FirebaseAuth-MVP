@@ -1,4 +1,4 @@
-package com.hepikode.mvpdemo1.view;
+package com.hepikode.mvpdemo1.views;
 
 /**
  * Created by DhytoDev on 3/5/17.

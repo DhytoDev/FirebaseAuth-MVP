@@ -1,19 +1,14 @@
-package com.hepikode.mvpdemo1.presenter;
+package com.hepikode.mvpdemo1.presenters;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.hepikode.mvpdemo1.view.SignUpView;
+import com.hepikode.mvpdemo1.views.SignUpView;
 
 /**
  * Created by DhytoDev on 3/5/17.

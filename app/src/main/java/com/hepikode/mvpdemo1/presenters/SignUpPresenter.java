@@ -1,4 +1,4 @@
-package com.hepikode.mvpdemo1.presenter;
+package com.hepikode.mvpdemo1.presenters;
 
 /**
  * Created by DhytoDev on 3/5/17.
