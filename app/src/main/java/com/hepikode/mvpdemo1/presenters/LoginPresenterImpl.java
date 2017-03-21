@@ -18,14 +18,13 @@ public class LoginPresenterImpl implements LoginPresenter {
     private FirebaseAuth auth ;
     private LoginView loginView ;
 
-    public LoginPresenterImpl(FirebaseAuth auth, LoginView loginView) {
+    public LoginPresenterImpl(FirebaseAuth auth) {
         this.auth = auth;
-        this.loginView = loginView;
     }
     @Override
     public void login(String email, String password) {
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            loginView.showValidationError();
+            loginView.showValidationError("Email and password can't be empty");
         } else {
             loginView.setProgressVisibility(true);
 
@@ -42,5 +41,23 @@ public class LoginPresenterImpl implements LoginPresenter {
                         }
                     });
         }
+    }
+
+    @Override
+    public void checkLogin() {
+        if (auth.getCurrentUser() != null)
+            loginView.isLogin(true);
+        else
+            loginView.isLogin(false);
+    }
+
+    @Override
+    public void attachView(LoginView view) {
+        loginView = view ;
+    }
+
+    @Override
+    public void detachView() {
+        loginView = null ;
     }
 }

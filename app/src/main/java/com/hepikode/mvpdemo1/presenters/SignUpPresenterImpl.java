@@ -14,13 +14,12 @@ import com.hepikode.mvpdemo1.views.SignUpView;
  * Created by DhytoDev on 3/5/17.
  */
 
-public class SignUpPresenterImp implements SignUpPresenter {
+public class SignUpPresenterImpl implements SignUpPresenter {
 
     private SignUpView signUpView ;
     private FirebaseAuth auth ;
 
-    public SignUpPresenterImp(FirebaseAuth auth, SignUpView signUpView) {
-        this.signUpView = signUpView;
+    public SignUpPresenterImpl(FirebaseAuth auth) {
         this.auth = auth ;
     }
 
@@ -45,5 +44,15 @@ public class SignUpPresenterImp implements SignUpPresenter {
                         }
                     });
         }
+    }
+
+    @Override
+    public void attachView(SignUpView view) {
+        signUpView = view ;
+    }
+
+    @Override
+    public void detachView() {
+        signUpView = null ;
     }
 }

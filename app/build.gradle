@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.hepikode.mvpdemo1"
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -29,13 +29,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    compile "com.google.firebase:firebase-auth:$rootProject.ext.firebaseVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    compile 'com.google.firebase:firebase-auth:10.0.1'
+    compile "com.google.firebase:firebase-database:$rootProject.ext.firebaseVersion"
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

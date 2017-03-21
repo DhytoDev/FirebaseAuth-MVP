@@ -1,23 +1,23 @@
 package com.hepikode.mvpdemo1.views.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.hepikode.mvpdemo1.R;
-import com.hepikode.mvpdemo1.presenters.SignUpPresenterImp;
-import com.hepikode.mvpdemo1.utils.IntentUtils;
+import com.hepikode.mvpdemo1.base.BaseActivity;
+import com.hepikode.mvpdemo1.presenters.SignUpPresenterImpl;
+import com.hepikode.mvpdemo1.utils.Utils;
 import com.hepikode.mvpdemo1.views.SignUpView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignUpActivity extends AppCompatActivity implements SignUpView {
+public class SignUpActivity extends BaseActivity implements SignUpView {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar ;
@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     @BindView(R.id.password)
     EditText password ;
 
-    private SignUpPresenterImp signUpPresenter ;
+    private SignUpPresenterImpl signUpPresenter ;
 
     private FirebaseAuth auth ;
 
@@ -38,29 +38,34 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
         auth = FirebaseAuth.getInstance() ;
 
-        signUpPresenter = new SignUpPresenterImp(auth, this);
-
-
+        signUpPresenter = new SignUpPresenterImpl(auth);
+        signUpPresenter.attachView(this);
     }
 
-    @OnClick(R.id.sign_up_button) void submit() {
+    @OnClick(R.id.sign_up_button) void onSignUpButtonClick() {
         signUpPresenter.signUp(email.getText().toString().trim(), password.getText().toString().trim());
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        signUpPresenter.detachView();
+    }
+
+    @Override
     public void showValidationError() {
-        Toast.makeText(this, "Cek email dan password !", Toast.LENGTH_SHORT).show();
+        Utils.showMessage(this, "Cek email dan password");
     }
 
     @Override
     public void signUpSuccess() {
-        Toast.makeText(this, "SignUp Sukses !", Toast.LENGTH_SHORT).show();
-        IntentUtils.setIntent(SignUpActivity.this, LoginActivity.class);
+        Utils.showMessage(this, "Signup Sukses !");
+        Utils.setIntent(this, LoginActivity.class);
     }
 
     @Override
     public void signUpError() {
-        Toast.makeText(this, "SignUp Gagal !", Toast.LENGTH_SHORT).show();
+        Utils.showMessage(this, "SignUp Gagal !");
     }
 
     @Override
@@ -70,5 +75,10 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         else
             progressBar.setVisibility(View.GONE);
 
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
