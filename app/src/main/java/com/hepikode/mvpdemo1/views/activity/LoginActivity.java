@@ -24,8 +24,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
     private FirebaseAuth auth ;
     private LoginPresenter loginPresenter ;
 
-    private User user ;
-
     @BindView(R.id.progressBar)
     ProgressBar progressBar ;
     @BindView(R.id.email)

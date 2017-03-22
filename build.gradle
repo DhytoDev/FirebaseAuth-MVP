@@ -31,7 +31,7 @@ ext {
     compileSdkVersion = 25
     buildToolsVersion = '25.0.2'
 
-    supportLibraryVersion = '25.2.0'
+    supportLibraryVersion = '25.3.0'
     butterknifeVersion = '8.5.1'
     firebaseVersion = '10.2.0'
 }

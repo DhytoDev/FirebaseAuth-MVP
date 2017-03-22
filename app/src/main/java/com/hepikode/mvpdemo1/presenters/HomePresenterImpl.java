@@ -1,14 +1,10 @@
 package com.hepikode.mvpdemo1.presenters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.hepikode.mvpdemo1.base.BasePresenter;
-import com.hepikode.mvpdemo1.base.BaseView;
 import com.hepikode.mvpdemo1.utils.Utils;
 import com.hepikode.mvpdemo1.views.HomeView;
 import com.hepikode.mvpdemo1.views.activity.LoginActivity;
